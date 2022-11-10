@@ -6,6 +6,7 @@
         <script src="https://unpkg.com/aframe-state-component@6.6.0/dist/aframe-state-component.min.js"></script>
         <script src="https://unpkg.com/aframe-text-sprite@3.1.1"></script>
         <script src="https://unpkg.com/aframe-environment-component@1.2.0/dist/aframe-environment-component.min.js"></script>
+        <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
         <script src="src/state.js"></script>
         <script src="src/data.js"></script>
 
@@ -42,7 +43,6 @@
                     ></a-sphere>
                 </template>
             </a-entity>
-            <a-entity id="hand" laser-controls raycaster="objects: .clickable"></a-entity>
             <a-cylinder
                 id="x-axis"
                 color="red"
@@ -96,6 +96,7 @@
                 </template>
             </a-entity>
             <a-entity position="4 0.2 2" bind__text-sprite="zAxisTitleRich"></a-entity>
+            <a-entity id="hand" laser-controls raycaster="objects: .clickable"></a-entity>
         </a-scene>
     </body>
 </html>
