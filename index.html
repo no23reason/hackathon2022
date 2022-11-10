@@ -8,7 +8,6 @@
         <script src="src/state.js"></script>
         <script src="src/data.js"></script>
         <script src="src/thumbstick_movement.js"></script>
-        <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.1/dist/aframe-extras.min.js"></script>
 
         <title>GoodData VR</title>
         <meta charset="UTF-8" />
@@ -96,7 +95,7 @@
             </a-entity>
             <a-entity position="4 0.2 2" bind__text="zAxisTitleRich" rotation="0 -90 0"></a-entity>
             <a-entity id="hand" laser-controls raycaster="objects: .clickable"></a-entity>
-            <a-entity id="rig" movement-controls="fly: true; speed: 0.3">
+            <a-entity id="rig">
                 <a-camera position="0 2 0" look-controls></a-camera>
                 <a-entity oculus-touch-controls="hand: left"></a-entity>
                 <a-entity oculus-touch-controls="hand: right" oculus-thumbstick-controls></a-entity>
