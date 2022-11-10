@@ -6,7 +6,7 @@ import zip from "lodash/zip";
 import chroma from "chroma-js";
 
 const WORKSPACE = "faa_custom";
-const INSIGHT_REF = idRef("2315fb88-e81e-45b4-a6d4-59e63f02610c", "insight");
+const INSIGHT_REF = idRef("b2a9d9d5-dfc6-4cd1-8557-00ddcefd80f8", "insight");
 
 const MIN_X_DATA = 0.5;
 const MAX_X_DATA = 3.5;
@@ -76,7 +76,7 @@ const main = async () => {
     const zipped = zip(flightCountSlice.dataPoints(), distanceSlice.dataPoints(), delaySlice.dataPoints());
 
     const dayNormalize = normalizer(MIN_X_DATA, MAX_X_DATA, 0, 6);
-    const yearNormalize = normalizer(MIN_Z_DATA, MAX_Z_DATA, 2000, 2005);
+    const yearNormalize = normalizer(MIN_Z_DATA, MAX_Z_DATA, 2000, 2005.75);
 
     const xs = new Set();
     const zs = new Set();
@@ -88,7 +88,11 @@ const main = async () => {
         xs.add(x);
         const yRaw = cnt.rawValue;
         const y = flightCountNormalize(yRaw);
-        const zRaw = Number.parseInt(yearRaw, 10);
+        const yearPart = Number.parseInt(yearRaw.split("-")[0], 10)
+        const quarterPart = Number.parseInt(yearRaw.split("-")[1], 10)
+        console.log(`yRaw=${yRaw} yearPart=${yearPart} quarterPart=${quarterPart}`);
+        const zRaw = yearPart + (quarterPart - 1)*0.25
+        console.log(`zRaw=${zRaw}`);
         const z = yearNormalize(zRaw);
         zs.add(z);
         const size = distanceNormalize(dist.rawValue);
