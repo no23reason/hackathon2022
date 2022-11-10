@@ -23,7 +23,7 @@
     </head>
 
     <body>
-        <a-scene id="scene">
+        <a-scene id="scene" id="scene" cursor="rayOrigin: mouse">
             <a-sky color="white"></a-sky>
             <a-entity bind-for="for: point; in: executionData; key: hash; updateInPlace: true">
                 <template>
@@ -31,9 +31,16 @@
                         color="{{point.color}}"
                         radius="{{point.size}}"
                         position="{{point.x}} {{point.y}} {{point.z}}"
+                        class="clickable"
+                        event-set__mouseenter="scale: 1.2 1.2 1.2"
+                        event-set__mouseleave="scale: 1.0 1.0 1.0"
+                        event-set__mousedown="opacity: 0.8"
+                        event-set__mouseup="opacity: 1.0"
+                        shadow
                     ></a-sphere>
                 </template>
             </a-entity>
+            <a-entity id="hand" laser-controls raycaster="objects: .clickable"></a-entity>
             <a-cylinder
                 id="x-axis"
                 color="red"
