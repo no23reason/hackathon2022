@@ -31,15 +31,17 @@
                         event-set__mouseup="opacity: 1.0"
                         shadow
                     ></a-sphere>
+
+                    <a-entity
+                        id="{{point.tooltipId}}"
+                        visible="false"
+                        material="color: #333"
+                        position="{{point.x}} {{point.yTooltip}} {{point.z}}"
+                        text="value: Flights: {{point.yRaw}}\nDistance: {{point.sizeRaw}}\nDelay: {{point.colorRaw}}; align: center; color: black"
+                        rotation="0 -135 0"
+                    ></a-entity>
                 </template>
             </a-entity>
-            <a-entity bind__position="tooltipPosition" bind__text-sprite="tooltipText"></a-entity>
-            <!-- <a-entity id="tooltip" bind__text="tooltipText" bind__position="tooltipPosition"></a-entity> -->
-            <!-- <a-entity
-                id="tooltip"
-                material="color: #333"
-                bind="text: tooltipText; position: tooltipPosition" -->
-            ></a-entity>
             <a-cylinder
                 id="x-axis"
                 color="red"

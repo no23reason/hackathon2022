@@ -79,7 +79,7 @@ const main = async () => {
     const xs = new Set();
     const zs = new Set();
 
-    const mapped = zipped.map(([cnt, dist, del]) => {
+    const mapped = zipped.map(([cnt, dist, del], index) => {
         const [yearRaw, dayRaw] = cnt.sliceDesc.sliceTitles();
         const xRaw = Number.parseInt(dayRaw, 10);
         const x = dayNormalize(xRaw);
@@ -96,12 +96,16 @@ const main = async () => {
             x,
             xRaw,
             y,
-            yRaw,
+            yTooltip: y + 0.25,
+            yRaw: cnt.formattedValue(),
             z,
             zRaw,
             size,
+            sizeRaw: dist.formattedValue(),
             color,
+            colorRaw: del.formattedValue(),
             hash,
+            tooltipId: `tool_${index}`,
         };
     });
 
@@ -125,11 +129,12 @@ const main = async () => {
         });
 
         document.querySelectorAll("a-sphere").forEach((el, index) => {
+            const tooltipId = mapped[index].tooltipId;
             el.addEventListener("mouseenter", () => {
-                window.AFRAME.scenes[0].emit("setActive", { index, ...mapped[index] });
+                document.querySelector(`#${tooltipId}`).setAttribute("visible", true);
             });
             el.addEventListener("mouseleave", () => {
-                window.AFRAME.scenes[0].emit("resetActive", {});
+                document.querySelector(`#${tooltipId}`).setAttribute("visible", false);
             });
         });
     }, 500);
