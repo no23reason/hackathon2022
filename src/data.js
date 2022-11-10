@@ -29,6 +29,8 @@ const backend = tigerFactory({
     new TigerTokenAuthProvider("amFuLnNvdWJ1c3RhOkhhY2thdG9uOkpyamNnSUM5eW95TU1JQ2V3bnErU0M3YXAxSU10WEhi")
 );
 
+const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
 const main = async () => {
     const insight = await backend.workspace(WORKSPACE).insights().getInsight(INSIGHT_REF);
 
@@ -96,7 +98,7 @@ const main = async () => {
             x,
             xRaw,
             y,
-            yTooltip: y + 0.25,
+            yTooltip: y + 0.3,
             yRaw: cnt.formattedValue(),
             z,
             zRaw,
@@ -106,6 +108,8 @@ const main = async () => {
             colorRaw: del.formattedValue(),
             hash,
             tooltipId: `tool_${index}`,
+            year: yearRaw,
+            day: DAYS[xRaw],
         };
     });
 
