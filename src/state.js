@@ -32,8 +32,8 @@ window.AFRAME.registerState({
         },
     },
     computeState: function (newState, payload) {
-        newState.xAxisTitleRich = `text: ${newState.xAxisTitle}; color: #000;font-size: 0.3`;
-        newState.yAxisTitleRich = `text: ${newState.yAxisTitle}; color: #000;font-size: 0.3`;
-        newState.zAxisTitleRich = `text: ${newState.zAxisTitle}; color: #000;font-size: 0.3`;
+        newState.xAxisTitleRich = `value: ${newState.xAxisTitle}; width: 3; align: center; side: double; color: black`;
+        newState.yAxisTitleRich = `value: ${newState.yAxisTitle}; width: 3; align: center; side: double; color: black`;
+        newState.zAxisTitleRich = `value: ${newState.zAxisTitle}; width: 3; align: center; side: double; color: black`;
     },
 });
