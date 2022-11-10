@@ -76,23 +76,29 @@ const main = async () => {
     const dayNormalize = normalizer(MIN_X_DATA, MAX_X_DATA, 0, 6);
     const yearNormalize = normalizer(MIN_Z_DATA, MAX_Z_DATA, 2000, 2005);
 
-    const xs = new Set()
-    const zs = new Set()
+    const xs = new Set();
+    const zs = new Set();
 
     const mapped = zipped.map(([cnt, dist, del]) => {
         const [yearRaw, dayRaw] = cnt.sliceDesc.sliceTitles();
-        const x = dayNormalize(Number.parseInt(dayRaw, 10));
-        xs.add(x)
-        const y = flightCountNormalize(cnt.rawValue);
-        const z = yearNormalize(Number.parseInt(yearRaw, 10));
-        zs.add(z)
+        const xRaw = Number.parseInt(dayRaw, 10);
+        const x = dayNormalize(xRaw);
+        xs.add(x);
+        const yRaw = cnt.rawValue;
+        const y = flightCountNormalize(yRaw);
+        const zRaw = Number.parseInt(yearRaw, 10);
+        const z = yearNormalize(zRaw);
+        zs.add(z);
         const size = distanceNormalize(dist.rawValue);
         const color = colorRange(delayNormalize(del.rawValue));
         const hash = `${x}_${y}_${z}_${size}_${color}`;
         return {
             x,
+            xRaw,
             y,
+            yRaw,
             z,
+            zRaw,
             size,
             color,
             hash,
@@ -116,6 +122,15 @@ const main = async () => {
                 title: dataView.result().dimensions[1].headers[0].attributeHeader.name,
                 ticks: Array.from(zs),
             },
+        });
+
+        document.querySelectorAll("a-sphere").forEach((el, index) => {
+            el.addEventListener("mouseenter", () => {
+                window.AFRAME.scenes[0].emit("setActive", { index, ...mapped[index] });
+            });
+            el.addEventListener("mouseleave", () => {
+                window.AFRAME.scenes[0].emit("resetActive", {});
+            });
         });
     }, 500);
 };
