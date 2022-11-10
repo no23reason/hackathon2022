@@ -44,6 +44,17 @@
         position="2 0 4"
         rotation="0 0 90"
       ></a-cylinder>
+      <a-entity bind-for="for: tick; in: zAxisTicks; updateInPlace: false">
+        <template>
+          <a-cylinder
+            color="grey"
+            height="4"
+            radius="0.005"
+            position="2 0 {{tick}}"
+            rotation="0 0 90"
+          ></a-cylinder>
+        </template>
+      </a-entity>
       <a-entity
         position="2 0.2 6"
         text-sprite="color: #000; text: Day of week (Sun-Sat); font-size: 0.3"
@@ -55,12 +66,12 @@
         radius="0.05"
         position="4 2 4"
       ></a-cylinder>
-      <a-entity bind-for="for: tick; in: yAxis.ticks; updateInPlace: true">
+      <a-entity bind-for="for: tick; in: yAxisTicks; updateInPlace: false">
         <template>
           <a-cylinder
-            color="yellow"
+            color="grey"
             height="4"
-            radius="0.01"
+            radius="0.005"
             position="4 {{tick}} 2"
             rotation="90 0 0"
           ></a-cylinder>
@@ -78,6 +89,17 @@
         position="4 0 2"
         rotation="90 0 0"
       ></a-cylinder>
+      <a-entity bind-for="for: tick; in: xAxisTicks; updateInPlace: false">
+        <template>
+          <a-cylinder
+            color="grey"
+            height="4"
+            radius="0.005"
+            position="{{tick}} 0 2"
+            rotation="90 0 0"
+          ></a-cylinder>
+        </template>
+      </a-entity>
       <a-entity
         position="4 0.2 2"
         text-sprite="color: #000; text: Year; font-size: 0.3"
