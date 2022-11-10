@@ -99,7 +99,7 @@ const main = async () => {
         };
     });
 
-    console.log("KOKOT", dataView.data().slices().descriptors);
+    console.log("KOKOT", dataView.result().dimensions);
 
     window.setTimeout(() => {
         window.AFRAME.scenes[0].emit("replaceExecutionData", mapped);

@@ -35,4 +35,9 @@ window.AFRAME.registerState({
             state.zAxisTitle = action.zAxis.title;
         },
     },
+    computeState: function (newState, payload) {
+        newState.xAxisTitleRich = `text: ${newState.xAxisTitle}; color: #000;font-size: 0.3`;
+        newState.yAxisTitleRich = `text: ${newState.yAxisTitle}; color: #000;font-size: 0.3`;
+        newState.zAxisTitleRich = `text: ${newState.zAxisTitle}; color: #000;font-size: 0.3`;
+    },
 });
