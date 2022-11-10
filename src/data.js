@@ -84,7 +84,7 @@ const main = async () => {
     const mapped = zipped.map(([cnt, dist, del], index) => {
         const [yearRaw, dayRaw] = cnt.sliceDesc.sliceTitles();
         const xRaw = Number.parseInt(dayRaw, 10);
-        const x = dayNormalize(xRaw);
+        const x = dayNormalize(Math.abs(xRaw - 6)); // we need to flip the order here so that Sun is 6 and Sat is 0
         xs.add(x);
         const yRaw = cnt.rawValue;
         const y = flightCountNormalize(yRaw);
