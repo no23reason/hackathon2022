@@ -97,6 +97,11 @@
             </a-entity>
             <a-entity position="4 0.2 2" bind__text-sprite="zAxisTitleRich"></a-entity>
             <a-entity id="hand" laser-controls raycaster="objects: .clickable"></a-entity>
+            <a-entity id="rig">
+                <a-camera position="0 1.6 0"></a-camera>
+                <a-entity oculus-touch-controls="hand: left" ></a-entity>
+                <a-entity oculus-touch-controls="hand: right" oculus-thumbstick-controls></a-entity>
+            </a-entity>
         </a-scene>
     </body>
 </html>
