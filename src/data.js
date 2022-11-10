@@ -69,7 +69,7 @@ const main = async () => {
         Math.max(...delaySlice.rawData())
     );
 
-    const colorRange = chroma.scale(["yellow", "blue"]);
+    const colorRange = chroma.scale(["yellow", "red"]);
 
     const zipped = zip(flightCountSlice.dataPoints(), distanceSlice.dataPoints(), delaySlice.dataPoints());
 
