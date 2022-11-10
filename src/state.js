@@ -11,13 +11,10 @@ window.AFRAME.registerState({
     },
     handlers: {
         replaceExecutionData: (state, action) => {
-            console.log("REPLACING", state, action);
             state.executionData.splice(0, state.executionData.length);
             state.executionData.push(...action);
         },
         setAxes: (state, action) => {
-            console.log("REPLACING AXES", state, action, JSON.stringify(state.yAxis));
-
             state.xAxisTicks.splice(0, state.xAxisTicks.length);
             state.xAxisTicks.push(...action.xAxis.ticks);
             state.xAxisTitle = action.xAxis.title;

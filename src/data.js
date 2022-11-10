@@ -113,35 +113,31 @@ const main = async () => {
         };
     });
 
-    console.log("KOKOT", dataView.result().dimensions);
+    window.AFRAME.scenes[0].emit("replaceExecutionData", mapped);
+    window.AFRAME.scenes[0].emit("setAxes", {
+        xAxis: {
+            title: dataView.result().dimensions[1].headers[1].attributeHeader.name,
+            ticks: Array.from(xs),
+        },
+        yAxis: {
+            title: flightCountSlice.descriptor.measureTitle(),
+            ticks: range(MIN_Y, MAX_Y, 0.5),
+        },
+        zAxis: {
+            title: dataView.result().dimensions[1].headers[0].attributeHeader.name,
+            ticks: Array.from(zs),
+        },
+    });
 
-    window.setTimeout(() => {
-        window.AFRAME.scenes[0].emit("replaceExecutionData", mapped);
-        window.AFRAME.scenes[0].emit("setAxes", {
-            xAxis: {
-                title: dataView.result().dimensions[1].headers[1].attributeHeader.name,
-                ticks: Array.from(xs),
-            },
-            yAxis: {
-                title: flightCountSlice.descriptor.measureTitle(),
-                ticks: range(MIN_Y, MAX_Y, 0.5),
-            },
-            zAxis: {
-                title: dataView.result().dimensions[1].headers[0].attributeHeader.name,
-                ticks: Array.from(zs),
-            },
+    document.querySelectorAll("a-sphere").forEach((el, index) => {
+        const tooltipId = mapped[index].tooltipId;
+        el.addEventListener("mouseenter", () => {
+            document.querySelector(`#${tooltipId}`).setAttribute("visible", true);
         });
-
-        document.querySelectorAll("a-sphere").forEach((el, index) => {
-            const tooltipId = mapped[index].tooltipId;
-            el.addEventListener("mouseenter", () => {
-                document.querySelector(`#${tooltipId}`).setAttribute("visible", true);
-            });
-            el.addEventListener("mouseleave", () => {
-                document.querySelector(`#${tooltipId}`).setAttribute("visible", false);
-            });
+        el.addEventListener("mouseleave", () => {
+            document.querySelector(`#${tooltipId}`).setAttribute("visible", false);
         });
-    }, 500);
+    });
 };
 
 function normalizer(targetMin, targetMax, dataMin, dataMax) {
@@ -153,9 +149,5 @@ function normalizer(targetMin, targetMax, dataMin, dataMax) {
         return ratio * targetSpan + targetMin;
     };
 }
-
-// document.querySelector("a-scene").addEventListener("loaded", function () {
-//   main();
-// });
 
 main();
