@@ -3,7 +3,7 @@
     <head>
         <script src="https://unpkg.com/aframe@1.3.0"></script>
         <script src="https://unpkg.com/aframe-state-component@6.6.0/dist/aframe-state-component.min.js"></script>
-        <script src="https://unpkg.com/aframe-environment-component@1.2.0/dist/aframe-environment-component.min.js"></script>
+        <script src="https://unpkg.com/aframe-environment-component@1.3.1/dist/aframe-environment-component.min.js"></script>
         <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
         <script src="src/state.js"></script>
         <script src="src/data.js"></script>
@@ -16,7 +16,7 @@
 
     <body>
         <a-scene id="scene" id="scene" cursor="rayOrigin: mouse">
-            <a-entity environment="preset: forest; dressing: towers"></a-entity>
+            <a-entity environment="preset: egypt;dressing: pyramids"></a-entity>
             <a-sky color="white"></a-sky>
             <a-entity bind-for="for: point; in: executionData; key: hash; updateInPlace: true">
                 <template>
