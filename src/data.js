@@ -26,7 +26,7 @@ const MAX_RADIUS = 0.2;
 const backend = tigerFactory({
     hostname: "https://demo-cicd.cloud.gooddata.com",
 }).withAuthentication(
-    new TigerTokenAuthProvider("amFuLnNvdWJ1c3RhOkhhY2thdG9uOkpyamNnSUM5eW95TU1JQ2V3bnErU0M3YXAxSU10WEhi")
+    new TigerTokenAuthProvider(process.env.TIGER_API_TOKEN)
 );
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
